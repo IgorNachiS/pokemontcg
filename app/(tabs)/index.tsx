@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image, FlatList, StyleSheet } from "react-native";
+import AppLoading from 'expo-app-loading';
+import { useFonts, PressStart2P_400Regular } from '@expo-google-fonts/press-start-2p';
 
 interface CartaPokemon {
   id: string;
@@ -79,6 +81,14 @@ const CartaPokemonItem = ({ carta }: { carta: CartaPokemon }) => (
 );
 
 export default function SurgingSparksChase() {
+  let [fontsLoaded] = useFonts({
+    PressStart2P_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Surging Sparks Chase Cards</Text>
@@ -102,6 +112,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
+    fontFamily: 'PressStart2P_400Regular', // Fonte Press Start 2P
   },
   card: {
     backgroundColor: "#fff",
@@ -140,10 +151,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 10,
     width: "100%",
+    fontFamily: 'PressStart2P_400Regular', // Fonte Press Start 2P
   },
   details: {
     fontSize: 14,
     color: "#555",
     textAlign: "center",
+    fontFamily: 'PressStart2P_400Regular', // Fonte Press Start 2P
   },
 });
